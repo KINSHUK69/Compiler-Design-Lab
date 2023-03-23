@@ -1,0 +1,18 @@
+%{
+    int n=0;
+%}
+%%
+"while"|"if"|"else" {printf("\t invalid");}
+"int"|"float" {printf("\t invalid");}
+^[a-zA-Z_][a-zA-z0-9_]* {n++,printf("\t identifiers:%s",yytext);}
+-?[0-9]*"."[0-9]+ {printf("\t invalid");}
+-?[0-9]+ {printf("\t invalid");}
+. ;
+%%
+int main(){
+    yylex();
+    printf("\ntotal no. of identifiers:%d\n",n);
+}
+int yywrap(){
+    return 1;
+}

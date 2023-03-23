@@ -1,0 +1,19 @@
+// count the number of whitespaces
+
+%{
+	int bl=0,ln=0,wr=0,ch=0;
+%}
+%%
+[\n] {ln++;wr++;}
+[\t] {bl++;wr++;}
+[" "] {bl++;wr++;}
+[^ \n\t] {ch++;}
+. ;
+%%
+int yywrap() {
+	return 1;
+}
+int main() {
+	yylex();
+	printf("blank:%d line:%d words:%d char:%d",bl,ln,wr,ch);
+}
